@@ -5,6 +5,14 @@
 #include "Movie.h"
 using namespace std;
 
+/*
+ * The Classic class inherits from the Movie class. This class
+ * contains information stored in the Movie class, along with
+ * extra information specific to this genre. These attributes
+ * include a major actor and release month. The class uses
+ * its own overloaded comparision operators to account for
+ * the extra attributes.
+ */
 class Classic: public Movie {
 public:
     // parameterized constructor
@@ -16,19 +24,18 @@ public:
         releaseMonth = month;
     }
 
+    ~Classic();
+
     // accessor methods
-    String getActorFirstName();
-    String getActorLastName();
-    int getReleaseMonth();
+    string getActorFirstName() const;
+    string getActorLastName() const;
+    int getReleaseMonth() const;
 
-    // overridden method for changing the movie's stock
-    bool changeStock(char trans);
-
-    // overridden overloaded comparison operators
-    bool operator<(const Movie&) const override;
-    bool operator>(const Movie&) const override;
-    bool operator==(const Movie&) const override;
-    bool operator!=(const Movie&) const override;
+    // overloaded comparison operators
+    bool operator<(const Classic&) const;
+    bool operator>(const Classic&) const;
+    bool operator==(const Classic&) const;
+    bool operator!=(const Classic&) const;
 
     // overridden method, Classic movies are displayed differently
     void display() const;
