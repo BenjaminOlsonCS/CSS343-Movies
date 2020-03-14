@@ -7,10 +7,6 @@ Classic::Classic(char genre, int stock, const string &director, const string &ti
     releaseMonth = month;
 }
 
-Classic::~Classic() {
-    delete this;
-}
-
 // accessor methods
 string Classic::getActorFirstName() const {
     return firstName;
