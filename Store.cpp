@@ -25,26 +25,27 @@ Store::~Store() {
 void Store::buildMovie(ifstream &movieFile) {
     string line;
     while(!movieFile.eof()) {
-        // each movie contains these attributes in this order, regardless of genre
         char genre;
+        char comma;
+        int stock;
         movieFile >> genre;
         if(!isValidGenre(genre)) { // in case of invalid genre
             getline(movieFile, line); // skip to next line
             continue;
         }
-        char comma;
         movieFile >> comma;
-        int stock;
         movieFile >> stock;
         movieFile >> comma;
-        string director;
-        getline(movieFile, director, ',');
-        string title;
-        getline(movieFile, title, ',');
-        // check for movie genre, for genre specific formatting
+        getline(movieFile, line);
+        int commaIndex = line.find(',');
+        string director = line.substr(1, commaIndex-1);
+        line = line.erase(0, commaIndex + 1);
+        commaIndex = line.find(',');
+        string title = line.substr(1, commaIndex-1);
+        line = line.erase(0, commaIndex + 2);
+        int releaseYear;
         if(genre == 'F' || genre == 'D') {
-            int releaseYear;
-            movieFile >> releaseYear;
+            releaseYear = stoi(line);
             if(genre == 'F') { // movie is of Comedy genre
                 Movie* film = new Comedy(genre, stock, director, title, releaseYear);
                 movies->insert(film);
@@ -55,12 +56,16 @@ void Store::buildMovie(ifstream &movieFile) {
             }
         }
         else { // movie is of Classic genre
-            string firstName, lastName;
-            movieFile >> firstName >> lastName;
-            int month;
-            movieFile >> month;
-            int releaseYear;
-            movieFile >> releaseYear;
+            int spaceIndex = line.find(' ');
+            string firstName = line.substr(0, spaceIndex);
+            line = line.erase(0, spaceIndex + 1);
+            spaceIndex = line.find(' ');
+            string lastName = line.substr(0, spaceIndex);
+            line = line.erase(0, spaceIndex + 1);
+            int month = stoi(line);
+            spaceIndex = line.find(' ');
+            line = line.erase(0, spaceIndex + 1);
+            releaseYear = stoi(line);
             Movie* film = new Classic(genre, stock, director, title, releaseYear, firstName, lastName, month);
             movies->insert(film);
         }
