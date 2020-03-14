@@ -19,8 +19,6 @@ public:
     Classic(char genre, int stock, const string &director,
             const string &title, int releaseYear, string &first, string &last, int month);
 
-    ~Classic() override;
-
     // accessor methods
     string getActorFirstName() const;
     string getActorLastName() const;
