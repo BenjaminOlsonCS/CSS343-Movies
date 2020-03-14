@@ -122,12 +122,11 @@ bool BSTree::search(Movie *&movie) const {
     // this is nonsense
     Node* tmp = root;
     while(tmp != nullptr) {
-        if(tmp->data == movie) {
-            delete movie; // deallocate, prevent dangling pointer
+        if(*tmp->data == *movie) {
             movie = tmp->data;
             return true;
         }
-        else if(tmp->data < movie)
+        else if(*tmp->data < *movie)
             tmp = tmp->right;
         else
             tmp = tmp->left;
