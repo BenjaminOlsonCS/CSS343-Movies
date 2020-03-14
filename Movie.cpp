@@ -15,11 +15,9 @@ Movie::Movie(char genre, int stock, const string &director, const string &title,
 }
 
 /*
- * destructor used to deallocate memory,
- * deletes Movie pointer.
+ * destructor
  */
 Movie::~Movie() {
-    delete this;
 }
 
 /*
