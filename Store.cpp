@@ -10,6 +10,11 @@ Store::Store() {
 
 }
 
+// destructor
+Store::~Store() {
+    movies->empty(); // deallocate memory from BSTree
+}
+
 /*
  * precondition: have a correctly formatted text file
  * containing a list of movies of varying genres.
