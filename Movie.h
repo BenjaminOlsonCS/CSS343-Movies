@@ -30,9 +30,6 @@ public:
     // method called when borrowing or returning movie
     virtual bool changeStock(char trans);
 
-    // factory method for movies
-    //static Movie *makeMovie(char genre);
-
     // overloaded comparison operators
     virtual bool operator<(const Movie&) const = 0;
     virtual bool operator>(const Movie&) const = 0 ;
