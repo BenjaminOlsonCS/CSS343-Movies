@@ -6,9 +6,11 @@ Borrow::Borrow(char transChar, int cid, Movie *m) : Transaction(transChar)
     movie = m;
 }
 
-void Borrow::doTrans()
+//preconditions: movie is a valid movie and the transaction has already been added to a customer's history.
+//postconditions: the movie's stock has decreased by one
+void Borrow::doTrans(Movie *movie)
 {
-    //todo: find the corresponding movie in the BST, (or an alternative if it is a classic), and decrease its stock by 1.
+    movie->changeStock(transactionChar);
 }
 
 int Borrow::getCustomerID() const
