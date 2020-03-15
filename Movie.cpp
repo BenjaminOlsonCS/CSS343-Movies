@@ -6,7 +6,8 @@
  * with all attributes set to values given in
  * parameter.
  */
-Movie::Movie(char genre, int stock, const string &director, const string &title, int releaseYear) {
+Movie::Movie(char genre, int stock, const string &director, const string &title, int releaseYear)
+{
     this->genre = genre;
     this->stock = stock;
     this->director = director;
@@ -15,9 +16,12 @@ Movie::Movie(char genre, int stock, const string &director, const string &title,
 }
 
 /*
- * destructor
+ * destructor used to deallocate memory,
+ * deletes Movie pointer.
  */
-Movie::~Movie() {
+Movie::~Movie()
+{
+    delete this;
 }
 
 /*
@@ -27,31 +31,38 @@ Movie::~Movie() {
  * postcondition: increments or decrements
  * movie stock depending on transaction type.
  */
-bool Movie::changeStock(char trans) {
-    if(trans == 'B')
+bool Movie::changeStock(char trans)
+{
+    if (trans == 'B')
         stock--;
-    else if(trans == 'R')
+    else if (trans == 'R')
         stock++;
+    return false;
 }
 
 // accessor methods for each attribute of Movie class
-string Movie::getTitle() const {
+string Movie::getTitle() const
+{
     return title;
 }
 
-int Movie::getStock() const {
+int Movie::getStock() const
+{
     return stock;
 }
 
-string Movie::getDirector() const {
+string Movie::getDirector() const
+{
     return director;
 }
 
-char Movie::getGenre() const {
+char Movie::getGenre() const
+{
     return genre;
 }
 
-int Movie::getReleaseYear() const {
+int Movie::getReleaseYear() const
+{
     return releaseYear;
 }
 
@@ -61,7 +72,8 @@ int Movie::getReleaseYear() const {
  * on its sorted order. This function will
  * be used to output the store's inventory.
  */
-void Movie::display() const {
+void Movie::display() const
+{
     cout << getStock() << ", " << getDirector() << ", ";
     cout << getTitle() << ", " << getReleaseYear() << endl;
 }

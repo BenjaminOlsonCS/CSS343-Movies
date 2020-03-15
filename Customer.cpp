@@ -1,7 +1,14 @@
 #include "Customer.h"
 #include <iostream>
 
-Customer::Customer(int id, string& last, string& first)
+Customer::Customer()
+{
+    customerID = -1;
+    lastName = "";
+    firstName = "";
+}
+
+Customer::Customer(int id, string last, string first)
 {
     customerID = id;
     lastName = last;
@@ -17,14 +24,16 @@ void Customer::addTrans(string &trans)
 // Displays the history of transactions for a customer
 void Customer::displayHistory() const
 {
-    if(!history.empty())
+    if (!history.empty())
     {
-        for(int i = 0; i < history.size(); i++)
+        for (int i = 0; i < history.size(); i++)
         {
             cout << history.at(i);
             cout << endl;
         }
     }
+    else
+        cout << "No history to display for customer: " << customerID << endl;
 }
 
 
@@ -43,3 +52,24 @@ int Customer::getID() const
     return customerID;
 }
 
+//Used to determine if a customer is currently borrowing a movie, in order to check to see if they can return it.
+bool Customer::hasBorrowedMovie(string transactionStr)
+{
+    cout << "have dey borrowed it doe?" << endl;
+    int borrowCount = 0,returnCount = 0;
+    for(int i = 0; i < history.size(); i++)
+    {
+        if(transactionStr.substr(2) == history.at(i).substr(2))
+        {
+            if(history.at(i).at(0) == 'B')
+            {
+                borrowCount++;
+            }
+            else if(history.at(i).at(0) == 'R')
+            {
+                returnCount++;
+            }
+        }
+    }
+    return returnCount < borrowCount;
+}

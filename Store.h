@@ -1,5 +1,7 @@
-#ifndef PROGRAM4_STORE_H
-#define PROGRAM4_STORE_H
+#ifndef INC_343MOVIES_STORE_H
+#define INC_343MOVIES_STORE_H
+
+
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -9,36 +11,42 @@
 #include "Comedy.h"
 #include "Drama.h"
 #include "Classic.h"
+#include "Customer.h"
+#include "Inventory.h"
+#include "History.h"
+#include "Borrow.h"
+#include "Return.h"
 
 using namespace std;
 
-class Store {
+
+class Store
+{
 public:
-    Store(); // default constructor
+
+    Store(); //default constructor
 
     //~Store(); // destructor
 
-    void buildMovie(ifstream& movieFile);
-    void buildCustomer(ifstream& customerFile);
-    void processTrans(ifstream& transFile);
+    void buildMovie(ifstream &movieFile);
 
     void displayInventory() const;
-    void addGenre(char genre); // add movie genre as a valid genre type
+
+    void addGenre(char genre); // add movie genre as a valid genre type, not used in this iteration.
+
+    void buildCustomer(istream &customerFile); //uses hashtable
+    void processTrans(istream &transFile); //Don't forget about invalid inputs
 
 private:
-    static Movie* makeMovie(char genre);
-    /*
-    Customer[] customers; //hashtable of customers
-    //some hashing functions for customers
-    bool addCustomer(Customer* patron); //adds a customer to the hashtable
-    bool getCustomer(int searchKey, Customer*& patron) const; //searches for customer in
-    //hashtable, searchKey type can change later
-    int calcSearchKey(int searchKey); //Returns the array index that uses a hashfunction to
-//find a customer, searchKey can change later
-*/
     bool isValidGenre(char genre) const; // checks if genre from text file is valid
-    BSTree* movies; // binary search tree that holds all movies in the store
+    BSTree *movies; // binary search tree that holds all movies in the store
     vector<char> genreTypes; // holds valid genres for the store
+
+    const static int hashSize = 1009;
+    Customer *customers[hashSize]; //hashtable of customers, 1000 maximum customers, 1009 is smallest prime above that.
+    bool addCustomer(Customer *patron); //adds a customer to the hashtable
+    bool getCustomer(int customerID, Customer *&patron) const; //searches for customer in customers hashtable
+    Movie* makeMovie(char genre, string movieData);
 };
 
-#endif //PROGRAM4_STORE_H
+#endif //INC_343MOVIES_STORE_H

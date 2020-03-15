@@ -5,19 +5,22 @@
 #include "string"
 #include "Transaction.h"
 #include "Movie.h"
-
-using namespace std;
+#include "Customer.h"
 
 class Borrow : public Transaction
 {
 public:
-    Borrow(char transChar, int cid, Movie* m);
-    void doTrans() override;
+    Borrow(char transChar, int cid, Movie *m);
+
+    void doTrans(Movie *movie);
+
     int getCustomerID() const;
-    Movie* getMovie() const;
+
+    Movie *getMovie() const;
+
 private:
     int customerID;
-    Movie* movie;
+    Movie *movie;
 };
 
 

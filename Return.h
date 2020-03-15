@@ -8,23 +8,22 @@
 
 #include "Transaction.h"
 #include "Movie.h"
-#include <string>
-using namespace std;
 
 class Return : public Transaction
 {
 public:
-Return(char commandChar, int customerIDinpt, Movie* movieInpt);
+    Return(char commandChar, int customerIDinpt, Movie *movieInpt);
 
-void doTrans() override;
-int getCustomerID() const;
-Movie* getMovie() const;
+    void doTrans(Movie *movie);
+
+    int getCustomerID() const;
+
+    Movie *getMovie() const;
 
 private:
-int customerID;
-Movie *movie;
+    int customerID;
+    Movie *movie;
 };
-
 
 
 #endif //INC_343MOVIES_RETURN_H

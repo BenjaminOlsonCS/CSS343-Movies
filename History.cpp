@@ -11,8 +11,7 @@ int History::getCustomerID() const
     return customerID;
 }
 
-void History::doTrans()
+void History::doTrans(Customer *customer)
 {
-    // Customer customer = Store.getCustomer(customerID);
-    // customer.displayHistory();
+    customer->displayHistory();
 }

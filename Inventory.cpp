@@ -1,6 +1,7 @@
 #include "Inventory.h"
+#include "Store.h"
 
-void Inventory::doTrans()
+void Inventory::doTrans(Store &store)
 {
-    //todo: using the BSTs that store movies, traverse them and display the movies in order.
+    store.displayInventory();
 }

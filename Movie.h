@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+
 using namespace std;
 
 /*
@@ -14,27 +15,37 @@ using namespace std;
  * overloaded comparison operators used for
  * sorting movies within their genres.
  */
-class Movie {
+class Movie
+{
 
 public:
     Movie(char genre, int stock, const string &director, const string &title, int releaseYear);
+
     virtual ~Movie();
 
     // accessor methods
     string getTitle() const;
+
     int getStock() const;
+
     string getDirector() const;
+
     char getGenre() const;
+
     int getReleaseYear() const;
 
     // method called when borrowing or returning movie
     virtual bool changeStock(char trans);
 
     // overloaded comparison operators
-    virtual bool operator<(const Movie&) const = 0;
-    virtual bool operator>(const Movie&) const = 0 ;
-    virtual bool operator==(const Movie&) const = 0;
-    virtual bool operator!=(const Movie&) const = 0;
+    virtual bool operator<(const Movie &) const = 0;
+
+    virtual bool operator>(const Movie &) const = 0;
+
+    virtual bool operator==(const Movie &) const = 0;
+
+    virtual bool operator!=(const Movie &) const = 0;
+
     virtual void display() const;
 
 protected:

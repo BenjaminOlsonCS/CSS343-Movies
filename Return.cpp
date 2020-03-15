@@ -6,10 +6,11 @@ Return::Return(char commandChar, int customerIDinpt, Movie *movieInpt) : Transac
     customerID = customerIDinpt;
 }
 
-//Returns a movie by finding the correct movie in the BST and then increasing its stock by 1.
-void Return::doTrans()
+//preconditions: movie is a valid movie and the transaction has already been added to a customer's history.
+//postconditions: the movie's stock has increased by one
+void Return::doTrans(Movie *movie)
 {
-    //todo: find the correct movie in the BST and increase its stock by 1
+    movie->changeStock(transactionChar);
 }
 
 int Return::getCustomerID() const
